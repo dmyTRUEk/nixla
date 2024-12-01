@@ -7,4 +7,5 @@ nix eval --file $FILENAME > /dev/null
 shift 1
 
 # step 3: run nix function on the input:
-nix eval --json --expr "($(cat $FILENAME)) \"$(echo $@)\""
+nix eval --json --expr "($(cat $FILENAME)
+) \"$(echo $@)\""
