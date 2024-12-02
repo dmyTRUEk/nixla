@@ -1,0 +1,3 @@
+{
+	add = input: input + input;
+}
