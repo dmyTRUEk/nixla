@@ -23,6 +23,11 @@ Run it like this:
 $ nixla add.nix Hello
 HelloHello
 ```
+Or like this:
+```bash
+$ echo Hello | nixla add.nix
+HelloHello
+```
 
 
 ### Example 2: multiply all numbers
@@ -47,6 +52,11 @@ in
 Run it:
 ```bash
 $ nixla-nix mul_all_numbers.nix 2 3 7
+42
+```
+Or using pipes:
+```bash
+$ echo 2 3 7 | nixla-nix mul_all_numbers.nix
 42
 ```
 
