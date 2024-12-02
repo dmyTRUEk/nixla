@@ -1,6 +1,37 @@
+# nixla - nix as a programming language
+
+
+
+# set nixla type:
+
+NIXLA=""
+NIXLA_NIX=""
+NIXLA_JSON=""
+
+script_name=$(basename "$0")
+case "$script_name" in
+	"nixla" | "nixla.sh")
+		NIXLA="--raw"
+		;;
+	"nixla-nix" | "nixla-nix.sh")
+		NIXLA_NIX=""
+		;;
+	"nixla-json" | "nixla-json.nix")
+		NIXLA_JSON="--json"
+		;;
+	*)
+		echo "Unknown entry-point: $script_name"
+		echo "Try using 'nixla', 'nixla-nix' or 'nixla-json'."
+		exit 1
+		;;
+esac
+
+
+
+# get filename
 FILENAME=$1
 
-# step 1: ensure given file is valid nix expression:
+# check that given file is a valid nix expression:
 nix \
 	--extra-experimental-features pipe-operators \
 	eval \
@@ -9,15 +40,17 @@ nix \
 	$FILENAME \
 	> /dev/null
 
-# step 2: remove filename from all other cli args
+# remove filename from all other cli args
 shift 1
 
-# step 3: run nix function on the input:
+# run nix function on the input:
 nix \
 	--extra-experimental-features pipe-operators \
 	eval \
 	--impure \
-	--raw \
+	$NIXLA \
+	$NIXLA_NIX \
+	$NIXLA_JSON \
 	--expr \
 	"($(cat $FILENAME)
 ) \"$(echo $@)\""

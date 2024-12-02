@@ -8,8 +8,8 @@
 		packages.${system} = {
 			default = self.packages.${system}.nixla;
 			nixla = pkgs.writeShellScriptBin "nixla" (builtins.readFile ./nixla.sh);
-			nixla-nix = pkgs.writeShellScriptBin "nixla-nix" (builtins.readFile ./nixla-nix.sh);
-			nixla-json = pkgs.writeShellScriptBin "nixla-json" (builtins.readFile ./nixla-json.sh);
+			nixla-nix = pkgs.writeShellScriptBin "nixla-nix" (builtins.readFile ./nixla.sh);
+			nixla-json = pkgs.writeShellScriptBin "nixla-json" (builtins.readFile ./nixla.sh);
 		};
 
 		apps.${system} = {
