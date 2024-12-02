@@ -31,6 +31,12 @@ esac
 # get filename
 FILENAME=$1
 
+# check filename
+if [ -z "$FILENAME" ]; then
+	echo "File name was not provided!"
+	exit 1
+fi
+
 # check that given file is a valid nix expression:
 nix \
 	--extra-experimental-features pipe-operators \
