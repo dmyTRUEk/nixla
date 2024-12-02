@@ -49,6 +49,26 @@ nix \
 # remove filename from all other cli args
 shift 1
 
+
+
+# Collect the input:
+
+# check if arguments is provided
+if [ "$#" -gt 0 ]; then
+	input="$@"
+
+# check if there is input from stdin
+elif [ ! -t 0 ]; then
+	# src: https://stackoverflow.com/questions/6980090/how-to-read-from-a-file-or-standard-input-in-bash#7045517
+	input="$(cat)"
+
+else
+	echo "No input provided!" >&2
+	exit 1
+fi
+
+
+
 # run nix function on the input:
 nix \
 	--extra-experimental-features pipe-operators \
@@ -59,4 +79,4 @@ nix \
 	$NIXLA_JSON \
 	--expr \
 	"($(cat $FILENAME)
-) \"$(echo $@)\""
+) \"$input\""
