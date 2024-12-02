@@ -49,3 +49,26 @@ Run it:
 $ nixla-nix mul_all_numbers.nix 2 3 7
 42
 ```
+
+
+### Example 3: import
+```nix
+# mylib.nix
+{
+  add = input: input + input;
+}
+```
+
+```nix
+# import-mylib.nix
+let
+  inherit (import ./mylib.nix) add;
+in
+  input:
+  add input
+```
+Run it:
+```bash
+$ nixla import-mylib.nix Hello
+HelloHello
+```
