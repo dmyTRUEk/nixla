@@ -67,6 +67,9 @@ else
 	exit 1
 fi
 
+# prevent nix string interpolation
+input=$(echo "$input" | sed 's/${/$${/g')
+
 
 
 # run nix function on the input:
