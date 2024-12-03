@@ -82,3 +82,8 @@ Run it:
 $ nixla import-mylib.nix Hello
 HelloHello
 ```
+
+
+### Other examples:
+- [github:dmyTRUEk/btree-nixla](https://github.com/dmyTRUEk/btree-nixla) - some binary tree operations (such as parsing from text, printing indented, reversing, traversing)
+- [github:dmyTRUEk/aoc2024](https://github.com/dmyTRUEk/aoc2024/) - Advent of Code 2024 solutions
