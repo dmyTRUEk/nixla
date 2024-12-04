@@ -76,6 +76,7 @@ input=$(echo "$input" | sed 's/${/$${/g')
 nix \
 	--extra-experimental-features pipe-operators \
 	eval \
+	--option max-call-depth 1000000 \
 	--impure \
 	$NIXLA \
 	$NIXLA_NIX \
